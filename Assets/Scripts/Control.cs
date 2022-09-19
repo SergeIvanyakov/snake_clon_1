@@ -19,16 +19,16 @@ public class Control : MonoBehaviour
         {
             Vector3 delta = Input.mousePosition - _nachalnoePolojenieMouse;
             
-            if (Head.position.x >= 5)
+            if (Head.position.x > 5)
             {
                 delta = new Vector3(0,0,0);
-                Head.position = new Vector3(4.99f, 0, 0);
+                Head.position = new Vector3(5f, 0, 0);
                 _nachalnoePolojenieMouse = new Vector3(5, 0, 0);
             }
-            if (Head.position.x <= -5)
+            if (Head.position.x < -5)
             {
                 delta = new Vector3(0, 0, 0);
-                Head.position = new Vector3(-4.99f, 0, 0);
+                Head.position = new Vector3(-5f, 0, 0);
                 _nachalnoePolojenieMouse = new Vector3(-5, 0, 0);
             }
             
