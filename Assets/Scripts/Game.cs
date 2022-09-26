@@ -6,6 +6,16 @@ public class Game : MonoBehaviour
 {
     public float speedSensor;
     public int level;
+    public enum State
+    {
+        Start,
+        Playing,
+        Won,
+        Loss,
+    }
+
+    public State CurrentState { get; private set; }
+
 
     // Start is called before the first frame update
     void Start()
