@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,37 +11,40 @@ public class SnakeTall : MonoBehaviour
 
     private List<Transform> snakeCircles = new List<Transform>();
     private List<Vector3> positions = new List<Vector3>();
+  
     
     // Start is called before the first frame update
     void Start()
     {
         positions.Add(SnakeHead.position);
-        AddCircle();
-        AddCircle();
-        
+        snakeCircles.Add(SnakeHead);
+        //AddCircle();
+
     }
 
     // Update is called once per frame
     void Update()
-    {
-        float distance = ((Vector3)SnakeHead.position - positions[0]).magnitude;
-        if(distance > CircleDiametr)
+    {   
+        snakeCircles[0].position = new Vector3(SnakeHead.position.x, snakeCircles[0].position.y, 0);
+        for (int i = 0; i < positions.Count-1; i++)
         {
-            positions.Insert(0, SnakeHead.position);
-            positions.RemoveAt(positions.Count - 1);
-            distance -= CircleDiametr;
+            snakeCircles[i+1].position = new Vector3(snakeCircles[i].position.x, snakeCircles[i+1].position.y, 0);
         }
-
-        for (int i=0; i<snakeCircles.Count; i++)
-        {
-            snakeCircles[i].position = Vector3.Lerp(positions[i + 1], positions[i], distance / CircleDiametr);
-        }
+        Debug.Log(positions.Count);
     }
 
     public void AddCircle()
     {
-        Transform circle = Instantiate(SnakeTail, positions[positions.Count - 1], Quaternion.identity, transform);
+        Vector3 delta = new Vector3(0, -1, 0);
+        Vector3 head = positions[positions.Count - 1];
+        Transform circle = Instantiate(SnakeTail, head + delta, Quaternion.identity, transform);
         snakeCircles.Add(circle);
         positions.Add(circle.position);
+     }
+
+   
+    private void OnTriggerEnter(Collider other)
+    {
+        AddCircle();
     }
 }
