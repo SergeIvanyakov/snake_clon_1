@@ -7,6 +7,7 @@ public class Game : MonoBehaviour
 {
     public float speedSensor;
     public int level;
+    public float timeDrop;
     public enum State
     {
         Start,
@@ -22,12 +23,14 @@ public class Game : MonoBehaviour
     void Start()
     {
         level = 1;
+        timeDrop = 2f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(level);
+        timeDrop = timeDrop / level;
+        Debug.Log(timeDrop);
     }
 
     public void ReloadLevel()

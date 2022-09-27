@@ -11,13 +11,13 @@ public class Level1 : MonoBehaviour
 
     public List<GameObject> dropObjectList = new List<GameObject>();
 
-    public Game Game;
-
+    public Game lGame;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //timeSpawnDrop = lGame.timeDrop;
         Invoke("Spawn", timeSpawnDrop);
         
     }
@@ -30,7 +30,8 @@ public class Level1 : MonoBehaviour
             int x = (int)(Random.Range(-5, 5) / 1);
             drop.transform.position = new Vector3(x, 21f, 0f);
             dropObjectList.Add(drop);
-            Invoke("Spawn", timeSpawnDrop );
+            Invoke("Spawn", timeSpawnDrop);
+            
         }
         else { dropObjectList.RemoveAt(dropObjectList.Count-1);  }
     }

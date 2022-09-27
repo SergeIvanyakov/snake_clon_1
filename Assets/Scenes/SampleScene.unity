@@ -310,6 +310,9 @@ MonoBehaviour:
   spawnObject: {fileID: 435626434389315685, guid: 3992c2c4d103e2a48a3bababe8053045, type: 3}
   timeSpawnDrop: 2
   speed: 0.1
+  flag: 0
+  dropObjectList: []
+  lGame: {fileID: 1958712723}
 --- !u!1 &845150586
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedSensor: 0.01
   level: 0
+  timeDrop: 0
 --- !u!82 &1958712724
 AudioSource:
   m_ObjectHideFlags: 0
@@ -972,6 +976,8 @@ MonoBehaviour:
   h3: {fileID: 2100000, guid: f883f1951ac5d494da1b0096060d292f, type: 2}
   audio1: {fileID: 2049036040}
   audio2: {fileID: 2049036039}
+  Level: {fileID: 811847106}
+  Game: {fileID: 1958712723}
   health: 0
 --- !u!135 &2049036035
 SphereCollider:
