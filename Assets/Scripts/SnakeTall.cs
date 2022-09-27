@@ -26,6 +26,10 @@ public class SnakeTall : MonoBehaviour
     public AudioSource audio1;
     public AudioSource audio2;
 
+    public Level1 Level;
+
+    public Game Game;
+
     public int health = 0;
 
     // Start is called before the first frame update
@@ -83,15 +87,18 @@ public class SnakeTall : MonoBehaviour
         {
             audio1.Play();
             for (int i = 0; i < health; i++) AddCircle();
-            if (snakeCircles.Count > 10)
+            if (snakeCircles.Count >= 10)
             {
                 Debug.Log("Win!!");
+                Level.flag = 1;
+                Game.level += 1;
+                Game.ReloadLevel();
             }
         }
         else
         {
             audio2.Play();
-            if (health / -1 >= snakeCircles.Count) Debug.Log("Loss!!");
+            if (health / -1 >= snakeCircles.Count) { Debug.Log("Loss!!"); Level.flag = 1; Game.ReloadLevel(); }
             else for (int i = health; i < 0; i++) RemoveCircle();
         }
         }

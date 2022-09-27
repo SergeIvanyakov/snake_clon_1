@@ -15,7 +15,7 @@ public class block : MonoBehaviour
 
     private void Awake()
     {
-        UpdateMat();
+       // UpdateMat();
     }
 
     private void UpdateMat()
@@ -55,7 +55,7 @@ public class block : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        UpdateMat();
     }
 
     // Update is called once per frame
