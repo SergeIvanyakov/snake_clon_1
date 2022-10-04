@@ -15,7 +15,7 @@ public class block : MonoBehaviour
 
     private void Awake()
     {
-       // UpdateMat();
+       
     }
 
     private void UpdateMat()

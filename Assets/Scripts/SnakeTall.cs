@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SnakeTall : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class SnakeTall : MonoBehaviour
     public GameObject SnakeHead;
     public GameObject SnakeTail;
     public float CircleDiametr;
+    public int fl;
 
     private List<GameObject> snakeCircles = new List<GameObject>();
     private List<Vector3> positions = new List<Vector3>();
@@ -26,9 +28,14 @@ public class SnakeTall : MonoBehaviour
     public AudioSource audio1;
     public AudioSource audio2;
 
+    public ParticleSystem PS1;
+    public ParticleSystem PS2;
+
     public Level1 Level;
 
     public Game Game;
+
+    public Text Text1;
 
     public int health = 0;
 
@@ -38,18 +45,21 @@ public class SnakeTall : MonoBehaviour
         positions.Add(SnakeHead.transform.position);
         snakeCircles.Add(SnakeHead);
         
-
+ 
     }
 
     // Update is called once per frame
     void Update()
-    {   
-        snakeCircles[0].transform.position = new Vector3(SnakeHead.transform.position.x, snakeCircles[0].transform.position.y, 0);
+    {
+       
         for (int i = 0; i < positions.Count-1; i++)
         {
             snakeCircles[i+1].transform.position = new Vector3(snakeCircles[i].transform.position.x, snakeCircles[i+1].transform.position.y, 0);
+ 
         }
-        
+        Text1.text = "Length " + positions.Count.ToString() + " < 10";
+        //Debug.Log(positions.Count);
+   
     }
 
     public void AddCircle()
@@ -86,18 +96,20 @@ public class SnakeTall : MonoBehaviour
         if (health > 0)
         {
             audio1.Play();
+            PS1.Play();
             for (int i = 0; i < health; i++) AddCircle();
             if (snakeCircles.Count >= 10)
             {
                 Debug.Log("Win!!");
                 Level.flag = 1;
-                Game.level += 1;
+                fl =1;
                 Game.ReloadLevel();
             }
         }
         else
         {
             audio2.Play();
+            PS2.Play();
             if (health / -1 >= snakeCircles.Count) { Debug.Log("Loss!!"); Level.flag = 1; Game.ReloadLevel(); }
             else for (int i = health; i < 0; i++) RemoveCircle();
         }
